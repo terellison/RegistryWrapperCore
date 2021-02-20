@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RegistryWrapperCore</name>
+    </assembly>
+    <members>
+        <member name="T:RegistryWrapperCore.RegistryKeyContainer">
+            <summary>
+            Data structure for containing values read from the registry
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer.RegistryKeyRoot">
+            <summary>
+            Root where values were read from
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer.Key">
+            <summary>
+            Key corresponding to the values
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer._64BitValues">
+            <summary>
+            List of 64-Bit values corresponding to the key in the form (keyName, value)
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer._32BitValues">
+            <summary>
+            List of 32-Bit values corresponding to the key in the form (keyName, value)
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer.RegistryVersion">
+            <summary>
+            Version of registry where values were read from
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer._32BitSubKeyNames">
+            <summary>
+            List of 32-Bit subkeys for the given Key
+            </summary>
+        </member>
+        <member name="P:RegistryWrapperCore.RegistryKeyContainer._64BitSubKeyNames">
+            <summary>
+            List of 64-Bit subkeys for the given key
+            </summary>
+        </member>
+        <member name="T:RegistryWrapperCore.RegistryWrapper">
+            <summary>
+            Wrapper for accessing the Windows Registry
+            </summary>
+        </member>
+        <member name="T:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot">
+            <summary>
+            Enum for determining the root key to be accessed (e.g. HKEY_LOCAL_MACHINE = LocalMachine)
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot.Users">
+            <summary>
+            For accessing HKEY_Users
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot.CurrentUser">
+            <summary>
+            For accessing HKEY_Current_User
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot.LocalMachine">
+            <summary>
+            For accessing HKEY_Local_Machine
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot.CurrentConfig">
+            <summary>
+            For accessing HKEY_Current_Config
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot.ClassesRoot">
+            <summary>
+            For accessing HKEY_Classes_Root
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot.PerformanceData">
+            <summary>
+            For accessing HKEY_Performance_Data
+            </summary>
+        </member>
+        <member name="T:RegistryWrapperCore.RegistryWrapper.RegistryVersion">
+            <summary>
+            Enum for determining which version of the registry to access. Can be 32-Bit, 64-Bit, or both
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryVersion.Only32Bit">
+            <summary>
+            Restricts access to exclusively the 32-Bit registry
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryVersion.Only64Bit">
+            <summary>
+            Restricts access to exclusively the 64-Bit registry
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.RegistryVersion.Both">
+            <summary>
+            Allows for access to both the 32-Bit and 64-Bit registries simultaneously
+            </summary>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.ReadKey(System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion)">
+            <summary>
+            Returns the registry key at the path specified
+            </summary>
+            <param name="keyPath">Full path of the key to be read</param>
+            <param name="registryVersion">Version of the registry to be read from</param>
+            <returns>A key container with the values</returns>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.ReadKey(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot,System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion)">
+            <summary>
+            Returns the registry key at the path specified
+            </summary>
+            <param name="registryKeyRoot">Enum of the root key to read from (e.g. HKEY_LOCAL_MACHINE = LocalMachine)</param>
+            <param name="keyPath">Path to the key to read from (without the root key)</param>
+            <param name="registryVersion">Version of the registry to read from. Can be 32-Bit, 64-Bit, or both</param>
+            <returns></returns>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.WriteValue(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot,System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>
+            Writes a value to given key
+            </summary>
+            <param name="registryKeyRoot">Enum of the root key to read from (e.g. HKEY_LOCAL_MACHINE = LocalMachine)</param>
+            <param name="key">Path to the key to write to. If part of the given key does not already exist it will be written</param>
+            <param name="registryVersion">Version of the registry to write to. Can be 32-Bit, 64-Bit, or both</param>
+            <param name="valueToWrite">Value to write to the key. should be given in the structure (Name, Data)</param>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.WriteSubKey(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot,System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>
+            Writes a subkey to a given key
+            </summary>
+            <param name="registryKeyRoot">Enum of the root key to read from (e.g. HKEY_LOCAL_MACHINE = LocalMachine)</param>
+            <param name="subKey">Path of the subkey to be written to. Allows for nested subkeys to be written even if parts of the path
+            do not already exist.</param>
+            <param name="registryVersion">Version of the registry to write to. Can be 32-Bit, 64-Bit, or both</param>
+            <param name="valuesToWrite">Values to be written to the given subkey</param>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DeleteSubKey(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot,System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion,System.Boolean)">
+            <summary>
+            Deletes a given subkey
+            </summary>
+            <param name="registryKeyRoot">Enum of the root key to delete from (e.g. HKEY_LOCAL_MACHINE = LocalMachine)</param>
+            <param name="subKey">Path of the subkey to be deleted</param>
+            <param name="registryVersion">Version of the registry to delete from. Can be 32-Bit, 64-Bit, or both</param>
+            <param name="forceSubKeyTreeDeletion">Can be used to force deletion of subkey tree. Defaults to false</param>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DeleteSubKeyTree(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot,System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion)">
+            <summary>
+            Deletes a given subkey and all of its subkeys
+            </summary>
+            <param name="registryKeyRoot">Enum of the root key to delete from (e.g. HKEY_LOCAL_MACHINE = LocalMachine)</param>
+            <param name="subKey">Path of the subkey to be deleted</param>
+            <param name="registryVersion">Version of the registry to delete from. Can be 32-Bit, 64-Bit, or both</param>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DeleteValue(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot,System.String,System.String,RegistryWrapperCore.RegistryWrapper.RegistryVersion)">
+            <summary>
+            Deletes a value from a given subkey
+            </summary>
+            <param name="registryKeyRoot">Enum of the root key to delete from (e.g. HKEY_LOCAL_MACHINE = LocalMachine)</param>
+            <param name="subKey">Path of the subkey to delete the value from</param>
+            <param name="value">Value to be deleted</param>
+            <param name="registryVersion">Version of the registry to delete from. Can be 32-Bit, 64-Bit, or both</param>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DetermineRootKey(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot)">
+            <summary>
+            Determines the root key to be accessed
+            </summary>
+            <param name="registryKeyRoot"></param>
+            <returns>Returns the underlying type that's being wrapped</returns>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DetermineRootKey(System.String)">
+            <summary>
+            Determines the root key to be accessed from a string
+            </summary>
+            <param name="registryKeyRoot"></param>
+            <returns>Returns the enum of the root key to be accessed</returns>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DetermineRegistryHive(RegistryWrapperCore.RegistryWrapper.RegistryKeyRoot)">
+            <summary>
+            Determines the RegistryHive to be used (the root key but for 32-Bit systems)
+            </summary>
+            <param name="registryKeyRoot"></param>
+            <returns>Returns the RegistryHive (root key)</returns>
+        </member>
+        <member name="M:RegistryWrapperCore.RegistryWrapper.DetermineRegistryView(RegistryWrapperCore.RegistryWrapper.RegistryVersion)">
+            <summary>
+            Determines the version of the registry to be accessed (64-Bit or 32-Bit)
+            </summary>
+            <param name="registryVersion"></param>
+            <returns>Returns the appropriate RegistryView</returns>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.InvalidOpMsg">
+            <summary>
+            Message for invalid operations
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.NullRefMsg">
+            <summary>
+            Message for reading from a subkey that does not exist
+            </summary>
+        </member>
+        <member name="F:RegistryWrapperCore.RegistryWrapper.UnauthorizedAccessMsg">
+            <summary>
+            When you forget to run as Administrator, this is what you will see :)
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -2,6 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Terry Ellison</Authors>
+    <Company>Terry Ellison</Company>
+    <Description>.NET Core wrapper for accessing the Windows Registry</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <Copyright>Copyright ©  2021</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/terellison/RegistryWrapperCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/terellison/RegistryWrapperCore.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>WindowsRegistry .NETCore Win32 terellison RegEdit Registry</PackageTags>
+    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\ellis\source\repos\RegistryWrapperCore\RegistryWrapperCore\RegistryWrapperCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
