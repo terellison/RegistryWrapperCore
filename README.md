@@ -6,4 +6,4 @@
 
 From Package Manager console
 
-```Install-Package RegistryWrapperCore```
+```PM>Install-Package RegistryWrapperCore```
